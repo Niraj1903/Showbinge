@@ -22,3 +22,5 @@ npx tailwindcss init
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+Redux setup
