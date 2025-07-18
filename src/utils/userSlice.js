@@ -5,6 +5,6 @@ const userSlice = createSlice({
   initialState: null,
   reducers: {
     addUser: (state, action) => {},
-    removeUser: (state, action.payload) => {},
+    removeUser: (state, action) => {},
   },
 });
