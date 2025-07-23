@@ -2,15 +2,19 @@ import { BODY_BG_URL } from "../utils/constants";
 import Header from "./Header";
 import { useState, useRef } from "react";
 import { checkValidData } from "../utils/validate";
+import { updateProfile } from "firebase/auth";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router";
+import { useDispatch } from "react-redux";
+import { addUser } from "../utils/userSlice";
 
 const Login = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [isSignInForm, setIsSignInForm] = useState(true);
 
   const [errorMsg, setErrorMsg] = useState(null);
@@ -19,7 +23,7 @@ const Login = () => {
 
   const password = useRef(null);
 
-  const fullName = useRef(null);
+  const name = useRef(null);
 
   const toggleSignInForm = () => {
     setIsSignInForm(!isSignInForm);
@@ -27,11 +31,7 @@ const Login = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    const message = checkValidData(
-      email.current.value,
-      password.current.value
-      // fullName.current.value
-    );
+    const message = checkValidData(email.current.value, password.current.value);
     setErrorMsg(message);
     if (message) return;
 
@@ -44,9 +44,27 @@ const Login = () => {
         .then((userCredential) => {
           // Signed up
           const user = userCredential.user;
-          navigate("/browse");
-          console.log(user);
-          // ...
+
+          updateProfile(user, {
+            displayName: name.current.value,
+            photoURL: "https://avatars.githubusercontent.com/u/174639944?v=4",
+          })
+            .then(() => {
+              const { uid, email, displayName, photoURL } = auth.currentUser;
+              dispatch(
+                addUser({
+                  uid: uid,
+                  email: email,
+                  displayName: displayName,
+                  photoURL: photoURL,
+                })
+              );
+              navigate("/browse");
+              console.log(user);
+            })
+            .catch((error) => {
+              setErrorMsg(error.message);
+            });
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -88,10 +106,10 @@ const Login = () => {
         </h1>
         {!isSignInForm && (
           <input
-            ref={fullName}
+            ref={name}
             className="p-4 my-4 w-full bg-gray-800"
             type="Name"
-            placeholder="Full Name"
+            placeholder="Name"
           />
         )}
         <input
