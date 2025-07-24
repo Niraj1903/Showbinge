@@ -3,3 +3,12 @@ export const NETFLIX_LOGO_URL =
 
 export const BODY_BG_URL =
   "https://assets.nflxext.com/ffe/siteui/vlv3/05e91faa-6f6d-4325-934e-5418dcc2567b/web/IN-en-20250630-TRIFECTA-perspective_159086b1-425f-435b-bcd5-1ed8039cdef9_large.jpg";
+
+export const API_OPTIONS = {
+  method: "GET",
+  headers: {
+    accept: "application/json",
+    Authorization:
+      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwY2I3NDdkNTk3ZjdhNTUwMDBiOGNiNGNiOWU5ZGE5NyIsIm5iZiI6MTc1MzM1Njg3OS42ODcsInN1YiI6IjY4ODIxYTRmY2QwYTBkNzg4NGY3N2IwMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Xj3Bn0Jl2IMjH9WBKh1QEbjldLM8L-WzQ7nbugria0k",
+  },
+};
