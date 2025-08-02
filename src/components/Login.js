@@ -1,4 +1,3 @@
-import { BODY_BG_URL } from "../utils/constants";
 import Header from "./Header";
 import { useState, useRef } from "react";
 import { checkValidData } from "../utils/validate";
@@ -95,7 +94,11 @@ const Login = () => {
         <Header />
 
         <div className="absolute">
-          <img className="object-cover" src={BODY_BG_URL} alt="BG-Image" />
+          <img
+            className="object-cover"
+            src="./image./pexels-cottonbro-5082568.jpg"
+            alt="BG-Image"
+          />
         </div>
 
         <form className="w-full md:w-3/12 absolute p-12 bg-black my-36 mx-auto right-0 left-0 text-white rounded-lg bg-opacity-80">
