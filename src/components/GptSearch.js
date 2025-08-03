@@ -6,9 +6,9 @@ import { BODY_BG_URL } from "../utils/constants";
 const GptSearch = () => {
   return (
     <>
-      <div className="-z-10 fixed">
+      {/* <div className="-z-10 fixed">
         <img className="object-cover" src={BODY_BG_URL} alt="BG-Image" />
-      </div>
+      </div> */}
       <GptSearchBar />
       <GptMovieSuggestion />
     </>
